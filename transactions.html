@@ -27,9 +27,13 @@
     if (index === 0) return;
 
     list.innerHTML += `
-      <li class="list-group-item">
+       <li class="list-group-item">
         <a href="transaction.html?id=${index}">
-          Block #${index} - ${block.data.yamType} (${block.data.quantity})
+          <strong>Block #${index}</strong><br>
+          ${block.data.yamType} (${block.data.quantity})<br>
+          <small class="text-muted">
+            Timestamp: ${block.timestamp}
+          </small>
         </a>
       </li>
     `;

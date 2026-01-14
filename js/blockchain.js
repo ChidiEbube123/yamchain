@@ -12,6 +12,10 @@ function simpleHash(str) {
   return hash.toString();
 }
 
+function getTimestamp() {
+  return new Date().toLocaleString(); // readable date & time
+}
+
 // Block structure
 class Block {
   constructor(index, timestamp, data, prevHash) {
@@ -39,7 +43,7 @@ if (!blockchain) {
   blockchain = [];
   const genesisBlock = new Block(
     0,
-    Date.now(),
+    getTimestamp(),
     { info: "Genesis Block" },
     "0"
   );
@@ -57,7 +61,7 @@ function addBlock(data) {
   const lastBlock = blockchain[blockchain.length - 1];
   const newBlock = new Block(
     blockchain.length,
-    Date.now(),
+    getTimestamp(),
     data,
     lastBlock.hash
   );
@@ -102,7 +106,7 @@ function makePurchase() {
     quantity: qty,
     pricePerTuber: price,
     totalPrice: qty * price,
-    timestamp: Date.now()
+    timestamp: getTimestamp()
   };
 
   // SMART CONTRACT CHECK
