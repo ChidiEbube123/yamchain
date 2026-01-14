@@ -65,6 +65,29 @@ function addBlock(data) {
   blockchain.push(newBlock);
   saveChain();
 }
+/************************
+ * Smart Contract Logic
+ ************************/
+
+const YamSmartContract = {
+  MAX_QTY: 50,
+
+  validateTransaction(tx) {
+    if (!tx.name || tx.name.trim().length < 2) {
+      return { valid: false, reason: "Invalid buyer name" };
+    }
+
+    if (tx.quantity <= 0 || tx.quantity > this.MAX_QTY) {
+      return { valid: false, reason: "Invalid quantity" };
+    }
+
+    if (tx.totalPrice !== tx.quantity * tx.pricePerTuber) {
+      return { valid: false, reason: "Price mismatch" };
+    }
+
+    return { valid: true };
+  }
+};
 
 // Purchase handler
 function makePurchase() {
@@ -73,21 +96,25 @@ function makePurchase() {
   const yamType = document.getElementById("yamType").innerText;
   const price = parseInt(document.getElementById("yamPrice").innerText);
 
-  if (!name || !qty || qty <= 0) {
-    alert("Please enter valid details");
-    return;
-  }
-
   const transaction = {
     name,
     yamType,
     quantity: qty,
     pricePerTuber: price,
-    totalPrice: qty * price
+    totalPrice: qty * price,
+    timestamp: Date.now()
   };
+
+  // SMART CONTRACT CHECK
+  const result = YamSmartContract.validateTransaction(transaction);
+
+  if (!result.valid) {
+    alert("Transaction rejected by smart contract: " + result.reason);
+    return;
+  }
 
   addBlock(transaction);
 
-  alert("Purchase recorded on blockchain!");
+  alert("Transaction approved and recorded on blockchain!");
   window.location.href = "transactions.html";
 }
