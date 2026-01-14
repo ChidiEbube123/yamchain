@@ -34,14 +34,3 @@
 
 </body>
 </html>
-
-<!-- 🔒 Protect Admin Pages (Dashboard)
-
-Add this to the top of dashboard.html script: -->
-
-<script>
-  if (localStorage.getItem("role") !== "admin") {
-    alert("Access denied");
-    window.location.href = "login.html";
-  }
-</script>
