@@ -3,6 +3,7 @@
  ***********************/
 
 // Simple hash function (intro-level, acceptable for class)
+
 function simpleHash(str) {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
@@ -122,3 +123,4 @@ function makePurchase() {
   alert("Transaction approved and recorded on blockchain!");
   window.location.href = "transactions.html";
 }
+

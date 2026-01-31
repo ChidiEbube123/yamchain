@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>YamChain</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
 </head>
-<body>
-  <nav class="navbar navbar-dark bg-success">
+
+<body onload="checkLogin()">
+
+<nav class="navbar">
   <div class="container">
-    <span class="navbar-brand">YamChain</span>
-    <a href="transactions.html" class="btn btn-light btn-sm">Transactions</a>
+    <span class="navbar-brand text-light fw-bold">🍠 YamChain</span>
+    <a href="transactions.html" class="btn btn-light btn-sm">📦 Transactions</a>
   </div>
 </nav>
 
@@ -21,40 +22,85 @@
   <h3 class="mb-4">Available Yams</h3>
 
   <div class="row g-4">
+
     <div class="col-md-4">
       <div class="card yam-card">
-        <img src="images/white_yam.jpeg" alt="White Yam" class="card-img-top">
-        <div class="card-body">
-          <h5>White Yam</h5>
+        <img src="images/sweet_benue_yam.jpeg" class="card-img-top">
+        <div class="card-body text-center">
+          <h5>Sweet Benue Yam</h5>
           <p>₦500 per tuber</p>
-          <a href="purchase.html?yam=White Yam&price=500" class="btn btn-success w-100">Buy</a>
+          <a href="purchase.html?yam=White Yam&price=500" class="btn btn-primary w-100">🛒 Buy</a>
         </div>
       </div>
     </div>
 
     <div class="col-md-4">
       <div class="card yam-card">
-        <img src="images/water_yam.jpeg" alt="Water Yam" class="card-img-top">
-        <div class="card-body">
+        <img src="images/water_yam.jpeg" class="card-img-top">
+        <div class="card-body text-center">
           <h5>Water Yam</h5>
           <p>₦600 per tuber</p>
-          <a href="purchase.html?yam=Water Yam&price=600" class="btn btn-success w-100">Buy</a>
+          <a href="purchase.html?yam=Water Yam&price=600" class="btn btn-primary w-100">🛒 Buy</a>
         </div>
       </div>
     </div>
 
     <div class="col-md-4">
       <div class="card yam-card">
-        <img src="images/yellow_yam.jpeg" alt="Yellow Yam" class="card-img-top">
-        <div class="card-body">
-          <h5>Yellow Yam</h5>
-          <p>₦700 per tuber</p>
-          <a href="purchase.html?yam=Yellow Yam&price=700" class="btn btn-success w-100">Buy</a>
+        <img src="images/coco yam.jpeg" class="card-img-top">
+        <div class="card-body text-center">
+          <h5>Coco Yam</h5>
+          <p>₦500 per tuber</p>
+          <a href="purchase.html?yam=White Yam&price=500" class="btn btn-primary w-100">🛒 Buy</a>
         </div>
       </div>
     </div>
+
+    <div class="col-md-4">
+      <div class="card yam-card">
+        <img src="images/bitter_yam.jpeg" class="card-img-top">
+        <div class="card-body text-center">
+          <h5>Bitter Yam</h5>
+          <p>₦500 per tuber</p>
+          <a href="purchase.html?yam=White Yam&price=500" class="btn btn-primary w-100">🛒 Buy</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card yam-card">
+        <img src="images/white_yam.jpeg" class="card-img-top">
+        <div class="card-body text-center">
+          <h5>White Yam</h5>
+          <p>₦500 per tuber</p>
+          <a href="purchase.html?yam=White Yam&price=500" class="btn btn-primary w-100">🛒 Buy</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card yam-card">
+        <img src="images/yellow_yam.jpeg" class="card-img-top">
+        <div class="card-body text-center">
+          <h5>Yellow Yam</h5>
+          <p>₦700 per tuber</p>
+          <a href="purchase.html?yam=Yellow Yam&price=700" class="btn btn-primary w-100">🛒 Buy</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
-  
+
+<script src="js/blockchain.js"></script>
+<script>
+  function checkLogin() {
+    const role = localStorage.getItem("role");
+    if (!role) {
+      window.location.href = "login.html";
+    }
+  }
+</script>
+
 </body>
 </html>
