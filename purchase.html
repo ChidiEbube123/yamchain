@@ -30,7 +30,10 @@
     <button class="btn btn-success w-100" onclick="makePurchase()">
       ✅ Confirm Purchase
     </button>
-
+<!--  
+<button onclick="connectWallet()">Connect Wallet</button>
+<button onclick="buyYam()">Buy Yam</button>
+  -->
     <p class="text-muted mt-3 text-center">
       * All purchases are validated by an automated smart contract
     </p>
@@ -42,6 +45,40 @@
   const params = new URLSearchParams(window.location.search);
   document.getElementById("yamType").innerText = params.get("yam");
   document.getElementById("yamPrice").innerText = params.get("price");
+  let provider;
+let signer;
+let contract;
+
+const contractAddress = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
+const abi = [
+  "function buyYam(uint _quantity, uint _price)",
+  "function getPurchasesCount() view returns (uint)"
+];
+async function buyYam() {
+  const quantity = 5;
+  const price = 2000;
+
+  const tx = await contract.buyYam(quantity, price);
+  await tx.wait();
+
+  alert("Purchase recorded on blockchain");
+}
+
+async function connectWallet() {
+  if (!window.ethereum) {
+    alert("Install MetaMask");
+    return;
+  }
+
+  provider = new ethers.providers.Web3Provider(window.ethereum);
+  await provider.send("eth_requestAccounts", []);
+  signer = provider.getSigner();
+
+  contract = new ethers.Contract(contractAddress, abi, signer);
+  alert("Wallet connected");
+}
+
+
 </script>
 
 </body>
